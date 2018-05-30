@@ -3,6 +3,8 @@ require 'bundler/setup'
 require 'bundler/gem_tasks'
 require "test/unit"
 
+require 'pry'
+
 require "rack"
 require "rack/test"
 
