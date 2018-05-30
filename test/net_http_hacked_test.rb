@@ -2,10 +2,10 @@ require "test_helper"
 require "net_http_hacked"
 
 class NetHttpHackedTest < Test::Unit::TestCase
-  
+
   def test_net_http_hacked
     req = Net::HTTP::Get.new("/")
-    http = Net::HTTP.start("www.iana.org", "80")
+    http = Net::HTTP.start("www.example.org", "80")
 
     # Response code
     res = http.begin_request_hacked(req)
@@ -16,7 +16,7 @@ class NetHttpHackedTest < Test::Unit::TestCase
     res.each_header { |k, v| headers[k] = v }
 
     assert headers.size > 0
-    assert headers["content-type"] == "text/html; charset=UTF-8"
+    assert headers["content-type"] == "text/html"
     assert !headers["date"].nil?
 
     # Body
@@ -32,5 +32,5 @@ class NetHttpHackedTest < Test::Unit::TestCase
 
     http.end_request_hacked
   end
-  
+
 end

@@ -47,6 +47,7 @@ class Net::HTTP
   # end
 
   def begin_request_hacked(req)
+    connect unless @socket
     begin_transport req
     req.exec @socket, @curr_http_version, edit_path(req.path)
     begin
